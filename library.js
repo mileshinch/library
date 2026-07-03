@@ -1,28 +1,3 @@
-// add some initial books
-let myLibrary = [
-  {
-    id: crypto.randomUUID(),
-    title: "Humankind",
-    author: "Rutger Bregman",
-    read: true,
-    review: "an uplifting read",
-  },
-  {
-    id: crypto.randomUUID(),
-    title: "The Three-body Problem",
-    author: "Cixin Liu",
-    read: true,
-    review: "enjoyable but didn't live up to the hype",
-  },
-  {
-    id: crypto.randomUUID(),
-    title: "This Way Up",
-    author: "Mark Cooper-Jones & Jay Foreman",
-    read: true,
-    review: "funny and some interesting stories that are good for pub chat",
-  },
-];
-
 // constructor function
 function Book(title, author, read, review) {
   if (!new.target) {
@@ -34,6 +9,33 @@ function Book(title, author, read, review) {
   this.read = read;
   this.review = review;
 }
+
+Book.prototype.toggleRead = function () {
+  this.read = !this.read;
+};
+
+let myLibrary = [];
+
+// create some initial books with constructor
+myLibrary.push(
+  new Book("Humankind", "Rutger Bregman", true, "an uplifting read")
+);
+myLibrary.push(
+  new Book(
+    "The Three-body Problem",
+    "Cixin Liu",
+    true,
+    "enjoyable but didn't live up to the hype"
+  )
+);
+myLibrary.push(
+  new Book(
+    "This Way Up",
+    "Mark Cooper-Jones & Jay Foreman",
+    true,
+    "funny and some interesting stories that are good for pub chat"
+  )
+);
 
 const cardContainer = document.querySelector(".cards-container");
 
@@ -93,7 +95,7 @@ function renderLibrary() {
     card.appendChild(readStatusBtn);
 
     readStatusBtn.addEventListener("click", () => {
-      book.read = !book.read; // change read status when button is clicked
+      book.toggleRead(); // change read status when button is clicked
       renderLibrary();
       console.log(myLibrary);
     });

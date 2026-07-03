@@ -1,13 +1,74 @@
 .cards-container {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+  padding: 24px;
+  background-color: #f7f4ec;
 }
 
 .card {
+  width: 220px;
+  min-height: 260px;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
+  background-color: #f3eee2; /* warm linen, like unbleached paper */
+  color: #2b4436; /* deep forest ink for text */
+  border: 1px solid #e1d8c2;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(43, 68, 54, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(43, 68, 54, 0.12);
+}
+
+/* Title */
+.card span:first-of-type {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #2b4436;
+}
+
+/* Author */
+.card span:nth-of-type(2) {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.85rem;
+  color: #8a7f68; /* muted taupe, softer than the title */
+  margin-bottom: auto;
+}
+
+.card button {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.8rem;
+  padding: 8px 10px;
+  border: 1px solid #c9a24b;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #2b4436;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.card button:hover {
+  background-color: #c9a24b;
+  color: #f3eee2;
+}
+
+/* Remove button — quieter, "destructive" treatment */
+.card button:last-of-type {
+  border-color: #c97b63;
+  color: #a85a46;
+}
+
+.card button:last-of-type:hover {
+  background-color: #c97b63;
+  color: #f3eee2;
 }
 
 .modal {

@@ -1,40 +1,52 @@
-function Books(title,author,pages,read) {
-    if (!new.target) {
-        throw Error("use the 'new' operator")
-    }
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+let myLibrary = [
+  {
+    id: crypto.randomUUID(),
+    title: "Humankind",
+    author: "Rutger Bregman",
+    read: true,
+    review: "an uplifting read",
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "The Three-body Problem",
+    author: "Cixin Liu",
+    read: true,
+    review: "enjoyable but didn't live up to the hype",
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "This Way Up",
+    author: "Mark Cooper-Jones & Jay Foreman",
+    read: true,
+    review: "funny and some interesting stories that you can share at the pub",
+  },
+];
+
+function Book(title, author, read, review) {
+  if (!new.target) {
+    throw Error("use the 'new' operator");
+  }
+  this.id = crypto.randomUUID();
+  this.title = title;
+  this.author = author;
+  this.read = read;
+  this.review = review;
 }
 
-let myLibrary = [];
-
-function addBookToLibrary(title,author,pages,read) {
-
-    const newBook = new Books(title,author,pages,read)
-    console.log(newBook)
-    myLibrary.push(newBook)
-
+function addBookToLibrary(title, author, read, review) {
+  //// take params, create a book then store it in the array
+  const newBook = new Book(title, author, read, review);
+  console.log(newBook);
+  myLibrary.push(newBook);
 }
+console.log("library", myLibrary);
 
-addBookToLibrary("The Hobbit","Tolkien",333,false)
-addBookToLibrary("Why we're getting poorer", "Cahal Moran", 100,false)
-addBookToLibrary("Orbital", "Lady Jane Grey", 100,false)
+const cardContainer = document.querySelector(".cards-container");
 
-const n = myLibrary.length
-const infoArray = ["title","author","pages","read"]
-
-const tableBody = document.querySelector("tbody")
-
-for (let i = 0; i < n; i++) {
-    const tableRow = document.createElement("tr");
-    tableRow.className = "row" + (i + 1)
-    tableBody.appendChild(tableRow);
-
-    for (let j = 0; j < 4; j++) {
-        const tableDataElement = document.createElement("td");
-        tableDataElement.textContent = myLibrary[i][infoArray[j]]
-        tableRow.appendChild(tableDataElement);
-    }
+// display the books
+for (const book of myLibrary) {
+  const card = document.createElement("div");
+  card.className = "card";
+  cardContainer.appendChild(card);
+  card.textContent = book.title;
 }
